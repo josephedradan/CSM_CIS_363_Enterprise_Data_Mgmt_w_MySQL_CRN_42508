@@ -54,6 +54,8 @@ A ghetto implementation of Amazon using django and MySQL made within 3 days.
 
     Run (2022)
 
+        cd application
+
         # Load the initial data
 
         python36 manage.py migrate
