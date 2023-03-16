@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Available Items for sale</h1>
+
+    <h2>Individual Orders</h2>
+    {% for dict_seller_product_listing in list_dict_seller_product_listing_remaining %}
+        <div class="table_div">
+        {% for site_product_id, seller_product_listing in dict_seller_product_listing.items %}
+            <a href="{% url 'website:product' site_product_id %}">
+                <h3 class="links_custom" >site_product_id: {{ site_product_id }}</h3>
+            </a>
+            <table>
+                <tr>
+                    {% for header in seller_product_listing_remaining_header %}
+                        <td>{{header}}</td>
+                    {% endfor %}
+                </tr>
+                    {% for row in seller_product_listing %}
+                        <tr>
+                            {% for item in row%}
+                                <td>{{item}}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+            </table>
+        {% endfor %}
+        </div>
+    {% endfor %}
+{% endblock content %}

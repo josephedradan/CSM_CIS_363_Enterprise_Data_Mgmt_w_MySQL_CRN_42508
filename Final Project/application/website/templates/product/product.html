@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1 class="site_product_title">PRODUCT PAGE FOR site_product_id: {{ row_SiteProduct.site_product_id }}</h1>
+    <h4>Product average star rating: {{ row_SiteProduct.product_rating_avg }}</h4>
+    <h4>Amount of products left: {{ amount_products_site_product }}</h4>
+    <table>
+        <tr>
+            {% for row in seller_product_listing_remaining_headers %}
+                <td>{{ row }}</td>
+            {% endfor %}
+        </tr>
+        {% for row in seller_product_listing_remaining %}
+            <tr>
+                {% for item in row %}
+                    <td>{{ item }}</td>
+                {% endfor %}
+                {% if user.is_authenticated %}
+                    <td>
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary" name="seller_product_listing_id"
+                                    value="{{ row.0 }}">Order
+                            </button>
+                        </form>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <h2>COMMENTS</h2>
+    {% for comment in row_SiteProductComment %}
+        <div class="page_product_comment">
+            <h4>{{ comment.id.id.username }}</h4>
+            <h4>{{ comment.datetime_created }}</h4>
+            <h4>Comment: {{ comment.comments }}</h4>
+            <h4>Rating: {{ comment.product_rating }}</h4>
+        </div>
+        <br>
+    {% endfor %}
+    <br>
+    {% if user.is_authenticated %}
+        <h2>Make Comment</h2>
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ form_comment|crispy }}
+            <input type="submit" value="post" class='btn btn-outline-info' name="post_comment">
+        </form>
+    {% endif %}
+    <h2>PRODUCT TAGS</h2>
+    {% for tag in row_ProductTagPair %}
+        <h4>{{ tag }}</h4>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <div class="media">
+            <!--        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">-->
+            <div class="media-body">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <p class="text-secondary">{{ user.email }}</p>
+                <p>
+                    {% if is_customer %}
+                        Prime Member: {{ prime_member }}<br/>
+                    {% endif %}
+                    Address 1: {{ user_profile.address_1 }}<br/>
+                    Address 2: {{ user_profile.address_2 }}<br/>
+                    City: {{ user_profile.city }}<br/>
+                    State/Province: {{ user_profile.state_province }}<br/>
+                    Zip: {{ user_profile.zip }}<br/>
+                    Phone 1: {{ user_profile.phone_1 }}<br/>
+                    Phone 2: {{ user_profile.phone_2 }}<br/>
+                </p>
+
+                {% if is_customer %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-sm" name="customer_create_order">Create new
+                            Order
+                        </button>
+                    </form>
+                {% else %}
+                    <h2>Revenue: {{ seller_revenue.0 }}</h2>
+                    <a href="{% url 'website:create_seller_product_listing' %}">
+                        <button type="button" class="btn btn-primary btn-sm">List new Product</button>
+                    </a>
+                {% endif %}
+
+                {% if is_customer %}
+                    <h2 class="div_padding_custom">Your orders</h2>
+                    <table>
+                        <tr>
+                            {% for header in user_all_orders_headers %}
+                                <td>{{ header }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% for row in user_all_orders %}
+                            <tr>
+                                {% for item in row %}
+                                    <td>{{ item }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    <h2 class="div_padding_custom">Individual Orders</h2>
+                    {% for dict_user_orders in list_dict_user_orders_all %}
+                        {% for order_id, order in dict_user_orders.items %}
+                            <div class="div_padding_custom">
+                                <h3 style="float:left; margin-right: 5px; line-height: 1;">Order ID: {{ order_id }}</h3>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="customer_order_id" value="{{ order_id }}">
+                                    <button type="submit" class="btn btn-danger" name="customer_delete_order"
+                                            value="placeholder">Delete Order
+                                    </button>
+                                </form>
+                            </div>
+                            <table>
+                                <tr>
+                                    {% for header in list_user_orders_all_headers %}
+                                        <td>{{ header }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% for row in order %}
+                                    <tr>
+                                        {% for item in row %}
+                                            <td>{{ item }}</td>
+                                        {% endfor %}
+                                        <td style="border:0; background-color: #ffffff;">
+                                            <form method="post">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="customer_order_id" value="{{ order_id }}">
+                                                <input type="hidden" name="seller_product_listing_id"
+                                                       value="{{ row.0 }}">
+                                                <button type="submit" class="btn btn-danger"
+                                                        name="customer_remove_item_from_order" value="placeholder">
+                                                    Remove
+                                                </button>
+                                            </form>
+
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                            </table>
+                        {% endfor %}
+                    {% endfor %}
+                {% else %}
+                    <h2 class="div_padding_custom">Your items Not Sold</h2>
+                    {% for dict_seller_product_listing_not_sold in list_dict_seller_product_listing_not_sold %}
+                        {% for site_product_id, seller_product_listing_not_sold in dict_seller_product_listing_not_sold.items %}
+                            <div class="div_padding_custom">
+                                <h3 style=" margin-right: 5px; line-height: 1;">
+                                    site_product_id: {{ site_product_id }}</h3>
+                            </div>
+                            <table>
+                                <tr>
+                                    {% for header in seller_product_listing_not_sold_headers %}
+                                        <td>{{ header }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% for row in seller_product_listing_not_sold %}
+                                    <tr>
+                                        {% for item in row %}
+                                            <td>{{ item }}</td>
+                                        {% endfor %}
+                                        <td style="border:0; background-color: #ffffff;">
+                                            <form method="post">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="site_product_id" value="{{ row.0 }}">
+                                                <button type="submit" class="btn btn-danger"
+                                                        name="seller_delete_product_listing"
+                                                        value="placeholder">Remove
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                            </table>
+                        {% endfor %}
+                    {% endfor %}
+                    <h2 class="div_padding_custom">Your Items Sold</h2>
+                    {% for dict_seller_product_listing_sold in list_dict_seller_product_listing_sold %}
+                        {% for site_product_id, seller_product_listing_sold in dict_seller_product_listing_sold.items %}
+                            <div class="div_padding_custom">
+                                <h3 class="dict_list">site_product_id: {{ site_product_id }}</h3>
+
+                            </div>
+                            <table>
+                                <tr>
+                                    {% for header in seller_product_listing_sold_headers %}
+                                        <td>{{ header }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% for row in seller_product_listing_sold %}
+                                    <tr>
+                                        {% for item in row %}
+                                            <td>{{ item }}</td>
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <!-- FORM HERE -->
+    </div>
+{% endblock content %}
