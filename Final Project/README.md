@@ -6,7 +6,8 @@ _Description_
 
 A ghetto implementation of Amazon using django and MySQL made within 3 days.
 
-_Demo Images_
+### Demo Images
+
 ![image_demo_1.PNG](https://raw.githubusercontent.com/josephedradan/CSM_CIS_363_Enterprise_Data_Mgmt_w_MySQL_CRN_42508/main/Final%20Project/image_demo_1.PNG)
 
 ![image_demo_2.PNG](https://raw.githubusercontent.com/josephedradan/CSM_CIS_363_Enterprise_Data_Mgmt_w_MySQL_CRN_42508/main/Final%20Project/image_demo_2.PNG)
