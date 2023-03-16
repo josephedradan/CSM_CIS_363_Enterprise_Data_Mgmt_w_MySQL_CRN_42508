@@ -56,19 +56,21 @@ For more information about the project read the pdf files or just read _DB Proje
 
     Run (2022)
 
-        cd application
+        # Install
+
+        python36 -m pip install --upgrade pip
+        python36 -m pip install django
+        python36 -m pip install mysqlclient
+        python36 -m pip install django-crispy-forms
 
         # Load the initial data
+
+        cd application
 
         python36 manage.py migrate
         python36 manage.py shell
             exec(open('FORCED_INSERT.py').read())  # Execute this code in the shell
 
         # Running the server
-
-        python36 -m pip install --upgrade pip
-        python36 -m pip install django
-        python36 -m pip install mysqlclient
-        python36 -m pip install django-crispy-forms
 
         python36 manage.py runserver 127.0.0.1:8000
