@@ -67,6 +67,7 @@ For more information about the project read the pdf files or just read _DB Proje
         # Running the server
 
         python36 -m pip install --upgrade pip
+        python36 -m pip install django
         python36 -m pip install mysqlclient
         python36 -m pip install django-crispy-forms
 
