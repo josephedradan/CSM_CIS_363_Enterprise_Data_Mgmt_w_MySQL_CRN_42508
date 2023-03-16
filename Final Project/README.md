@@ -18,7 +18,7 @@ A ghetto implementation of Amazon using django and MySQL made within 3 days.
 
 **Joseph Notes**
 
-    Sql stuff
+    Useful SQL files
 
         query project create table.sql
         query project stored functions and procedures.sql
@@ -27,7 +27,7 @@ A ghetto implementation of Amazon using django and MySQL made within 3 days.
         query project custom testing.sql
         query project insert into.sql
 
-    Run
+    Before running
 
         Order of operations to get a DB example:
             1. in MySQL workbench run this line from "query project create table"
