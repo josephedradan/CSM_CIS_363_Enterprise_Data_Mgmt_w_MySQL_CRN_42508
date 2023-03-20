@@ -2,7 +2,7 @@
 
 ## College of San Mateo CIS 364 Enterprise Data Management with MySQL Final Project
 
-_Description_
+**Description**:
 
 A terrible implementation of Amazon using django and MySQL made within 3 days. Within those days I learned django and integrated it with MySQL. On the third day, around 3 hours before the 5pm due date, I wrote _DB Project Phase 5 - Joseph Edradan.pdf_
 
