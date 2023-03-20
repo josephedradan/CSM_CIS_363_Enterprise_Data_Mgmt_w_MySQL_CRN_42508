@@ -4,7 +4,7 @@
 
 **Description**:
 
-A terrible implementation of Amazon using django and MySQL made within 3 days. Within those days I learned django and integrated it with MySQL. On the third day, around 3 hours before the 5pm due date, I wrote _DB Project Phase 5 - Joseph Edradan.pdf_
+A terrible implementation of Amazon using Django and MySQL made within 3 days. Within those days I learned django and integrated it with MySQL. On the third day, around 3 hours before the 5pm due date, I wrote _DB Project Phase 5 - Joseph Edradan.pdf_
 
 For more information about the project read the pdf files or just read _DB Project Phase 5 - Joseph Edradan.pdf_
 

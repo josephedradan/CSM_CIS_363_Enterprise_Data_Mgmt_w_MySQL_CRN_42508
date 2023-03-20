@@ -223,7 +223,6 @@ class PageProfile(View):
 
     def get(self, request, *args, **kwargs):
         user_current = request.user
-        print("FUCKSDCKSDCSDFSDF")
         if request.user.is_authenticated:
             # Calling procedure is_seller in MySQL
             with connection.cursor() as cursor:
